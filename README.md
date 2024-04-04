@@ -34,19 +34,20 @@ function Pill({ label, variant, size = "small", className }: PillProps) {
         {
           // Classes in BASE will always be applied...
           BASE: `
-        text-white
-        rounded
-        border border-white
-        bg-blue
-      `,
+            text-white
+            rounded
+            border border-white
+            bg-blue
+          `,
           // ...unless overwritten in a state
           success: "bg-green",
           failure: "bg-red",
           small: "px-0.5 py-1",
-          large: "px-1 py-2",
-          // twiv() also accepts an override as the second parameter
+          large: "px-1 py-2"
+          // (if two active states have conflicting classes, the class in the last state will be picked)
         },
-        className,
+        // twiv() also accepts an override as the second parameter
+        className
       )}
     >
       {label}
