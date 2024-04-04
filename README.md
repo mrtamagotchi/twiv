@@ -42,6 +42,7 @@ function Pill({ label, variant, size = "small", className }: PillProps) {
           // ...unless overwritten in a state
           success: "bg-green",
           failure: "bg-red",
+          banana: "bg-yellow", // This will throw a TS error since "banana" is not a defined state value
           small: "px-0.5 py-1",
           large: "px-1 py-2"
           // (if two active states have conflicting classes, the class in the last state will be picked)
@@ -62,7 +63,10 @@ Twiv is a small util function that makes it easier to manage Tailwind classes ba
 
 ## Why Twiv?
 
-Apart from the many other benefits of Tailwind, two of its nicest day-to-day features is that you don't need to name your elements, and that all styling is right there with the markup. However, this simple model breaks as soon as we want to work with variants.
+> **TL;DR:**
+> Use this lib if you want some of the power of `CVA`, while still keeping styling simple and close to the markup.
+
+Tailwind has many long-term benefits, but two of its nicest day-to-day features is the colocation of styles and markup, and that you don't need to name your elements. However, this simple model breaks as soon as we want to work with variants.
 
 The most common ways to solve this is by using [`clsx`](https://github.com/lukeed/clsx), [`tailwind-merge`](https://github.com/dcastil/tailwind-merge) or [`class-variance-authority`](https://cva.style/docs). These come with their own set of drawbacks:
 
@@ -71,10 +75,6 @@ The most common ways to solve this is by using [`clsx`](https://github.com/lukee
 
 Twiv aims to be somewhere inbetween complex and simple, as that's where the complexity of most components should be.
 
-### TL;DR:
-
-Use this lib if you want some of the power of `CVA`, while still keeping styling simple and close to the markup.
-
 ## Will Twiv work with my framework of choice?
 
-Yes! Currently, there is a vanilla implementation and a React hook, but Twiv exposes a TS function calles `rawTwiv` that can be used to for other framework specific bindings. Please submit a PR if you give it a go!
+Yes! Currently, there is a vanilla implementation and a React hook, but Twiv exposes a function called `rawTwiv` that can be used to write bindings for any other framework. Please submit a PR if you give it a go!
