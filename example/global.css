@@ -1,0 +1,11 @@
+@import "tailwindcss";
+@import url('https://fonts.googleapis.com/css2?family=Yatra+One&display=swap');
+
+@theme {
+    --font-family-display: "Yatra One",serif;
+}
+
+:root {
+    background-attachment: fixed;
+    background-image: linear-gradient(to top, var(--color-blue-300), var(--color-blue-200) 80%);
+}

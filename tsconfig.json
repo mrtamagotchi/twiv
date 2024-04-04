@@ -1,0 +1,33 @@
+{
+  "compilerOptions": {
+    "baseUrl": "./src",
+    "rootDir": ".",
+    "paths": {
+      "twiv": ["./index.ts"],
+    },
+    "target": "ESNext",
+    "module": "ESNext",
+    "moduleResolution": "Bundler",
+    "jsx": "react-jsx",
+    "types": ["vite/client", "node", "react"],
+    "lib": ["ESNext", "DOM", "DOM.Iterable"],
+    "allowJs": true,
+    "allowSyntheticDefaultImports": true,
+    "allowImportingTsExtensions": true,
+    "useDefineForClassFields": true,
+    "strict": true,
+    "skipLibCheck": false,
+    "sourceMap": true,
+    "resolveJsonModule": true,
+    "isolatedModules": true,
+    "esModuleInterop": true,
+    "noEmit": true,
+    "noUnusedLocals": false,
+    "noUnusedParameters": false,
+    "noImplicitReturns": false,
+    "forceConsistentCasingInFileNames": true
+  },
+  "include": ["src", "example"],
+  "exclude": ["node_modules"],
+  "references": [{ "path": "./tsconfig.node.json" }],
+}
