@@ -17,7 +17,7 @@ interface PillProps {
   label: string;
   variant?: "success" | "failure";
   size: "small" | "large";
-  className?: HTMLElement["className"];
+  className?: string;
 }
 
 function Pill({ label, variant, size = "small", className }: PillProps) {
