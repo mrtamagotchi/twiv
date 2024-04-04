@@ -1,7 +1,7 @@
 <div align="center">
     <br />
     <a href="https://github.com/mrtamagotchi/twiv">
-        <img src="./assets/logo.jpg" alt="twiv" height="400px" />
+        <img src="./assets/logo-small.jpg" alt="twiv" height="400px" />
     </a>
 </div>
 
