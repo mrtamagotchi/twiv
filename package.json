@@ -1,10 +1,13 @@
 {
   "name": "twiv",
-  "version": "0.0.1",
+  "version": "0.0.2",
   "description": "Tailwind inline variants. A styling util (with type inference) that keeps your styles close to the markup. Like CVA without steriods.",
   "author": "Kotte Aistre (https://github.com/mrtamagotchi)",
   "homepage": "https://github.com/mrtamagotchi/twiv",
-  "repository": "github:mrtamagotchi/twiv",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/mrtamagotchi/twiv.git"
+  },
   "issues": "https://github.com/mrtamagotchi/twiv/issues",
   "license": "MIT",
   "keywords": [
