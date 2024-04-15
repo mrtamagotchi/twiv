@@ -5,12 +5,13 @@ type TailwindClass = string | undefined;
 const TWIV_OPCODES = ["ALL:", "ANY:"] as const;
 type TwivOpcode = (typeof TWIV_OPCODES)[number];
 
-export type TwivVariantName = string | "BASE";
-type ValidVariantName<T extends (TwivVariantName | undefined)[]> = Exclude<
+type TwivVariantName = string | "BASE";
+export type TwivVariantNameArray = (TwivVariantName | undefined)[];
+type ValidVariantName<T extends TwivVariantNameArray> = Exclude<
   T[number],
   undefined
 >;
-type TwivStateTree<T extends (TwivVariantName | undefined)[]> = {
+type TwivStateTree<T extends TwivVariantNameArray> = {
   [K in ValidVariantName<T>]: boolean;
 };
 
@@ -28,14 +29,14 @@ type TwivStateTree<T extends (TwivVariantName | undefined)[]> = {
 //        with circular types, or that too many variant props with too
 //        many variant names quickly get to over 100_000 variations,
 //        making TS completely collapse.
-type TwivOpcodeKey<T extends (TwivVariantName | undefined)[]> =
+type TwivOpcodeKey<T extends TwivVariantNameArray> =
   `${TwivOpcode} ${ValidVariantName<T>} ${TwivVariantName}`;
 
-export type TwivVariantsObject<T extends (TwivVariantName | undefined)[]> = {
+export type TwivVariantsObject<T extends TwivVariantNameArray> = {
   [K in ValidVariantName<T> | TwivOpcodeKey<T>]?: TailwindClass;
 } & { BASE?: TailwindClass };
 
-export interface TwivArgs<T extends (TwivVariantName | undefined)[]> {
+export interface TwivArgs<T extends TwivVariantNameArray> {
   activeVariants: T;
   variantStyleObject: TwivVariantsObject<T>;
   override?: TailwindClass;
@@ -72,7 +73,7 @@ function evaluateOpcodeString<T extends TwivVariantName[]>(
   }
 }
 
-export function rawTwiv<T extends (TwivVariantName | undefined)[]>(
+export function rawTwiv<T extends TwivVariantNameArray>(
   activeVariants: TwivArgs<T>["activeVariants"],
   variantStyleObject: TwivArgs<T>["variantStyleObject"],
   override?: TwivArgs<T>["override"],

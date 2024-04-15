@@ -1,3 +1,4 @@
+// @ts-nocheck remove this when testing until a better solution is created
 import React, { ReactNode } from "react";
 import { useTwiv } from "../../../src/react/useTwiv";
 
@@ -9,7 +10,7 @@ interface ManualTestTSErrorsProps {
   className?: string;
 }
 
-export function ManualTestTSErrors({
+function ManualTestTSErrors({
   children,
   variant,
   size = "medium",

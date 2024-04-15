@@ -1,14 +1,12 @@
 import { useCallback } from "react";
 import {
   TwivArgs,
-  TwivVariantName,
+  TwivVariantNameArray,
   TwivVariantsObject,
   rawTwiv,
 } from "../core/rawTwiv.ts";
 
-export function useTwiv<T extends (TwivVariantName | undefined)[]>(
-  variantNames: T,
-) {
+export function useTwiv<T extends TwivVariantNameArray>(variantNames: T) {
   return useCallback(
     (
       variantStyleObject: TwivVariantsObject<T>,
