@@ -5,7 +5,9 @@ import {
   rawTwiv,
 } from "../core/rawTwiv.ts";
 
-export function vanillaTwiv<T extends TwivVariantName[]>(variantNames: T) {
+export function vanillaTwiv<T extends (TwivVariantName | undefined)[]>(
+  variantNames: T,
+) {
   return (
     variantStyleObject: TwivVariantsObject<T>,
     override?: TwivArgs<T>["override"],
