@@ -44,11 +44,14 @@ function Pill({ label, variant, size = "small", className }: PillProps) {
           failure: "bg-red",
           banana: "bg-yellow", // This will throw a TS error since "banana" is not a defined state value
           small: "px-0.5 py-1",
-          large: "px-1 py-2"
+          large: "px-1 py-2",
+          // multiple states can be targeted with opcode strings (EXPERIMENTAL)
+          ["ANY: success failure"]: "font-bold", // applies the classes if any state matches
+          ["ALL: success large"]: "text-lg", // applies classes if all states match
           // (if two active states have conflicting classes, the class in the last state will be picked)
         },
         // twiv() also accepts an override as the second parameter
-        className
+        className,
       )}
     >
       {label}
@@ -57,11 +60,15 @@ function Pill({ label, variant, size = "small", className }: PillProps) {
 }
 ```
 
+## Installation
+
+It's an NPM package. Any eqivalent of `npm install twiv` works.
+
 ## What is Twiv?
 
 Twiv is a small util function that makes it easier to manage Tailwind classes based on typed component props.
 
-## Why Twiv?
+## Why use Twiv?
 
 > **TL;DR:**
 > Use this lib if you want some of the power of `CVA`, while still keeping styling simple and close to the markup.
@@ -78,3 +85,56 @@ Twiv aims to be somewhere inbetween complex and simple, as that's where the comp
 ## Will Twiv work with my framework of choice?
 
 Yes! Currently, there is a vanilla implementation and a React hook, but Twiv exposes a function called `rawTwiv` that can be used to write bindings for any other framework. Please submit a PR if you give it a go!
+
+## API
+
+```
+useTwiv(variantNames: [<string union type prop>])
+
+or
+
+vanillaTwiv(variantNames: [<string union type prop>])
+```
+
+returns:
+
+```
+twiv(
+  variantStyleObject: {
+    key: <variant state name or opcode string>,
+    value: <Tailwind class string>
+  },
+  override: <Tailwind class string>)`
+```
+
+`useTwiv` and `vanillaTwiv` are interchangeable. `useTwiv` is just being memoized for better React performance.
+
+### variantNames
+
+An array of props used to select the correct state styles. Each variant name needs to be a variable with a string union type.
+
+### variantStyleObject
+
+An object with key-value pairs.
+
+#### Key
+
+Can be one of three values:
+
+- `BASE`: This will always be applied regardless of state. Syntax is chosen to match Tailwinds `DEFAULT` config naming convention.
+
+- `variant state name`: Will be constrained to the possible values of the `variantNames` props.
+
+- `Opcode string (experimental)`: A Twiv opcode followed by multiple state names, all separated by a space. Very limited type constraints here due to poor dynamic string typing in TS. Some constraints exist, but make sure to check your spelling. Two opcodes exist right now:
+  - `ALL: <list of variant state names>`: Will be applied of all states match.
+  - `ANY: <list of variant state names>`: Will be applies if at least one of the states match.
+
+#### Value
+
+A string of Tailwind class names.
+
+If multiple states are true and they have clashing Tailwind class names, Twiv will select the the last occurrence of the class name.
+
+### override
+
+A Tailwind class string that will override all other clashing Tailwind class names.
