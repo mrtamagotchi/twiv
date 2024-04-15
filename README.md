@@ -86,6 +86,9 @@ Twiv aims to be somewhere inbetween complex and simple, as that's where the comp
 
 Yes! Currently, there is a vanilla implementation and a React hook, but Twiv exposes a function called `rawTwiv` that can be used to write bindings for any other framework. Please submit a PR if you give it a go!
 
+---
+---
+
 ## API
 
 ```
@@ -109,15 +112,19 @@ twiv(
 
 `useTwiv` and `vanillaTwiv` are interchangeable. `useTwiv` is just being memoized for better React performance.
 
-### variantNames
+---
+
+### `variantNames`
 
 An array of props used to select the correct state styles. Each variant name needs to be a variable with a string union type.
 
-### variantStyleObject
+---
+
+### `variantStyleObject`
 
 An object with key-value pairs.
 
-#### Key
+#### `variantStyleObject` key
 
 Can be one of three values:
 
@@ -129,12 +136,27 @@ Can be one of three values:
   - `ALL: <list of variant state names>`: Will be applied of all states match.
   - `ANY: <list of variant state names>`: Will be applies if at least one of the states match.
 
-#### Value
+#### `variantStyleObject` value
 
 A string of Tailwind class names.
 
 If multiple states are true and they have clashing Tailwind class names, Twiv will select the the last occurrence of the class name.
 
-### override
+---
+
+### `override`
 
 A Tailwind class string that will override all other clashing Tailwind class names.
+
+---
+---
+
+## Roadmap
+- Evaluate the experimental `Opcodes` feature (https://github.com/mrtamagotchi/twiv/issues/2):
+  - Try out performance.
+  - Try out ergonomics.
+  - Improve typings.
+  - Could the same problem be solved in a better way?
+- Add object notation (https://github.com/mrtamagotchi/twiv/issues/1)?
+- Add an _Advanced examples_ section to the docs (https://github.com/mrtamagotchi/twiv/issues/4).
+- Add some actions to run tests, check coverage, do release branches and all that other cool stuff.
